@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Local-only password strength and security analyzer">
+  <title>Password Security Analyzer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <p class="eyebrow">CYBERSECURITY LAB</p>
+      <h1>Password Security Analyzer</h1>
+      <p>Analyze password strength and improve your digital security.</p>
+    </div>
+  </header>
+  <main class="container">
+    <div class="privacy">🔒 <strong>Privacy Notice:</strong> Your password is analyzed locally and is never stored, logged, or sent to a database.</div>
+    <section class="grid two-col" aria-label="Password analyzer">
+      <article class="card">
+        <div class="card-heading"><span class="icon">◈</span><div><h2>Password Analyzer</h2><p>Check strength without sharing your password.</p></div></div>
+        <div class="input-row">
+          <label class="sr-only" for="password">Password</label>
+          <input id="password" type="password" autocomplete="off" spellcheck="false" placeholder="Type a password to analyze">
+          <button class="icon-button" id="toggle-password" type="button" aria-label="Show password">◉</button>
+          <button class="icon-button" id="clear-password" type="button" aria-label="Clear password">×</button>
+        </div>
+        <button class="primary-button" id="analyze-button" type="button">Analyze password</button>
+        <div class="meter" aria-label="Password score"><div id="score-bar"></div></div>
+        <div class="score-line"><span id="strength">Not analyzed</span><strong id="score">0/100</strong></div>
+        <p class="entropy">Estimated entropy: <strong id="entropy">0 bits</strong></p>
+        <ul class="checklist" id="checklist"></ul>
+      </article>
+      <article class="card">
+        <div class="card-heading"><span class="icon">✦</span><div><h2>Security Recommendations</h2><p>Practical guidance based on the analysis.</p></div></div>
+        <ul class="recommendations" id="recommendations"><li>Analyze a password to see recommendations.</li></ul>
+      </article>
+    </section>
+    <section class="card generator">
+      <div class="card-heading"><span class="icon">⚿</span><div><h2>Secure Password Generator</h2><p>Generated with Python's cryptographic <code>secrets</code> module.</p></div></div>
+      <div class="generator-controls">
+        <label for="length">Length <output id="length-value">16</output></label>
+        <input id="length" type="range" min="8" max="32" value="16">
+        <div class="options">
+          <label><input type="checkbox" data-option="uppercase" checked> Uppercase</label>
+          <label><input type="checkbox" data-option="lowercase" checked> Lowercase</label>
+          <label><input type="checkbox" data-option="numbers" checked> Numbers</label>
+          <label><input type="checkbox" data-option="symbols" checked> Symbols</label>
+        </div>
+        <div class="generated-row"><output id="generated-password" aria-live="polite">Click generate to create a password</output><button class="secondary-button" id="copy-button" type="button">Copy</button></div>
+        <button class="primary-button" id="generate-button" type="button">Generate secure password</button>
+      </div>
+    </section>
+    <section class="card education">
+      <h2>How Password Security Works</h2>
+      <div class="education-grid">
+        <div><h3>Brute force</h3><p>Attackers try many possible combinations. Longer passwords create a much larger search space.</p></div>
+        <div><h3>Dictionary attacks</h3><p>Attackers try lists of common words, passwords, and leaked credentials.</p></div>
+        <div><h3>Credential stuffing</h3><p>Leaked username and password pairs are tested on other websites.</p></div>
+        <div><h3>Password managers</h3><p>A manager can generate and remember unique passwords for every account.</p></div>
+      </div>
+    </section>
+  </main>
+  <footer class="container"><p>Educational project • Never reuse passwords across websites.</p></footer>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
